@@ -1,6 +1,13 @@
 import dashboardData from "@/data/mock_dashboard_data.json";
 import Image from "next/image";
 import { clsx } from "clsx";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tasks",
+  description:
+    "Review team tasks by workflow status, priority, and assignee in your workspace.",
+};
 
 const tasks = dashboardData.kanban_tasks ?? [];
 const { users } = dashboardData ?? [];

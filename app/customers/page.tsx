@@ -2,6 +2,13 @@ import { formatLastSeen } from "@/components/DateAndTime";
 import dashboardData from "@/data/mock_dashboard_data.json";
 import { clsx } from "clsx";
 import { Download } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Customers",
+  description:
+    "View customer account health, subscription plans, revenue, and recent engagement.",
+};
 
 const customers = dashboardData.customers.data ?? [];
 

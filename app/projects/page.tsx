@@ -1,6 +1,13 @@
 import dashboardData from "@/data/mock_dashboard_data.json";
 import Image from "next/image";
 import { clsx } from "clsx";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Track project delivery progress, priorities, budgets, and ownership across your team.",
+};
 
 const projects = dashboardData.projects ?? [];
 

@@ -22,12 +22,9 @@ export default function Sidebar() {
 
   return (
     <section
-      className={clsx(
-        "group fixed left-0 top-0 hover:w-66 h-screen w-10 z-1000",
-        {
-          "w-66": isOpen,
-        },
-      )}
+      className={clsx("group fixed left-0 top-0 hover:w-66 h-dvh w-10 z-1000", {
+        "w-66": isOpen,
+      })}
     >
       <div
         aria-hidden="true"
@@ -51,7 +48,7 @@ export default function Sidebar() {
       />
       <aside
         className={clsx(
-          "relative z-10 transform bg-white dark:bg-slate-900 dark:text-slate-100 -translate-x-full group-hover:translate-x-0 duration-400 w-64 h-screen rounded-r-lg shadow-lg items-center flex justify-between flex-col py-8",
+          "relative z-10 transform bg-white dark:bg-slate-900 dark:text-slate-100 -translate-x-full group-hover:translate-x-0 duration-400 w-64 h-dvh rounded-r-lg shadow-lg items-center flex justify-between flex-col py-8",
           {
             "translate-x-0": isOpen,
           },

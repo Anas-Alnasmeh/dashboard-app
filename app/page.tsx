@@ -1,4 +1,5 @@
 import data from "@/data/mock_dashboard_data.json";
+import type { Metadata } from "next";
 
 import {
   ArrowUpRight,
@@ -20,6 +21,12 @@ import {
 import { clsx } from "clsx";
 import { NotificationsMenu } from "@/components/NotificationsMenu";
 import ChartDashboard from "@/components/ChartDashboard";
+
+export const metadata: Metadata = {
+  title: { absolute: "Dashboard | KIN" },
+  description:
+    "Get a focused overview of your team's projects, tasks, and workspace performance.",
+};
 
 function initials(name: string) {
   return name

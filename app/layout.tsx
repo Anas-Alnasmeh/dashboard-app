@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KIN | Workspace dashboard",
+  title: {
+    default: "Workspace Dashboard | KIN",
+    template: "%s | KIN",
+  },
   description: "A focused overview of your team's work and performance.",
 };
 
