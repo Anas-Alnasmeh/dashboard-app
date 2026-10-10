@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   Bell,
   Check,
@@ -35,9 +35,33 @@ export function NotificationsMenu({
   const [notifications, setNotifications] = useState(initialNotifications);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
   const unreadCount = notifications.filter(
     (notification) => !notification.read,
   ).length;
+
+  useLayoutEffect(() => {
+    if (!isOpen) return;
+
+    const updatePanelPosition = () => {
+      const trigger = triggerRef.current;
+      const panel = panelRef.current;
+      if (!trigger || !panel) return;
+
+      panel.style.setProperty(
+        "--notifications-top",
+        `${trigger.getBoundingClientRect().bottom + 8}px`,
+      );
+    };
+
+    updatePanelPosition();
+    window.addEventListener("resize", updatePanelPosition);
+    window.addEventListener("scroll", updatePanelPosition, true);
+    return () => {
+      window.removeEventListener("resize", updatePanelPosition);
+      window.removeEventListener("scroll", updatePanelPosition, true);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -102,9 +126,10 @@ export function NotificationsMenu({
 
       {isOpen && (
         <section
+          ref={panelRef}
           id="notifications-panel"
           aria-labelledby="notifications-title"
-          className="absolute right-0 top-full z-50 mt-2 w-[min(24rem,calc(100vw-2rem))] overflow-hidden rounded-xl border border-slate-200 bg-white text-slate-900 shadow-xl shadow-slate-900/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          className="absolute right-0 top-full z-[1001] mt-2 flex max-h-[calc(100dvh-2rem)] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white text-slate-900 shadow-xl shadow-slate-900/10 max-[640px]:fixed max-[640px]:left-4 max-[640px]:right-4 max-[640px]:top-[var(--notifications-top)] max-[640px]:mt-0 max-[640px]:max-h-[calc(100dvh-var(--notifications-top)-1rem)] max-[640px]:w-auto dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
         >
           <header className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-slate-700">
             <div>
@@ -127,7 +152,7 @@ export function NotificationsMenu({
             )}
           </header>
 
-          <ul className="max-h-[min(26rem,60vh)] overflow-y-auto p-2">
+          <ul className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
             {notifications.length === 0 ? (
               <li className="px-3 py-8 text-center text-sm text-slate-500 dark:text-slate-400">
                 No notifications yet.

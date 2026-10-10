@@ -40,7 +40,7 @@ export default function Sidebar() {
       <CircleChevronRight
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          "z-20 duration-400 fill-white dark:fill-slate-900 group-hover:translate-x-64 group-hover:rotate-180 fixed top-[50%] left-1 transform -translate-y-1/2 w-10 h-10",
+          "z-20 duration-400 fill-white dark:fill-slate-900 group-hover:translate-x-64 group-hover:rotate-180 fixed top-[50dvh] left-1 transform -translate-y-1/2 w-10 h-10",
           {
             "translate-x-64 rotate-180": isOpen,
           },
@@ -64,6 +64,7 @@ export default function Sidebar() {
             KIN
           </h1>
           <Link
+            onClick={() => setIsOpen(false)}
             href="/profile"
             className={clsx("element-of-sidebar", {
               active:
@@ -74,6 +75,7 @@ export default function Sidebar() {
             PROFILE
           </Link>
           <Link
+            onClick={() => setIsOpen(false)}
             href="/dashboard"
             className={clsx("element-of-sidebar", {
               active: pathname === "/dashboard" || pathname === "/",
@@ -83,6 +85,7 @@ export default function Sidebar() {
             DASHBOARD
           </Link>
           <Link
+            onClick={() => setIsOpen(false)}
             href="/customers"
             className={clsx("element-of-sidebar", {
               active: pathname === "/customers",
@@ -92,6 +95,7 @@ export default function Sidebar() {
             CUSTOMERS
           </Link>
           <Link
+            onClick={() => setIsOpen(false)}
             href="/projects"
             className={clsx("element-of-sidebar", {
               active: pathname === "/projects",
@@ -101,6 +105,7 @@ export default function Sidebar() {
             PROJECTS
           </Link>
           <Link
+            onClick={() => setIsOpen(false)}
             href="/tasks"
             className={clsx("element-of-sidebar", {
               active: pathname === "/tasks",
@@ -110,6 +115,7 @@ export default function Sidebar() {
             TASKS
           </Link>
           <Link
+            onClick={() => setIsOpen(false)}
             href="/analytics"
             className={clsx("element-of-sidebar", {
               active: pathname === "/analytics",
