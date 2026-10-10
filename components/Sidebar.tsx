@@ -12,21 +12,60 @@ import {
   Users,
   FolderKanban,
   SquareCheckBig,
+  X,
 } from "lucide-react";
+import { useState } from "react";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="group fixed left-0 top-0 hover:w-66 h-screen w-10 z-1000">
+    <section
+      className={clsx(
+        "group fixed left-0 top-0 hover:w-66 h-screen w-10 z-1000",
+        {
+          "w-66": isOpen,
+        },
+      )}
+    >
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 bg-black/20 opacity-0 transition-opacity duration-400 group-hover:opacity-100"
+        onClick={() => setIsOpen(false)}
+        className={clsx(
+          "fixed inset-0 bg-black/20 opacity-0 transition-opacity duration-400 group-hover:opacity-100",
+          {
+            "opacity-100": isOpen,
+            "pointer-events-none": !isOpen,
+          },
+        )}
       />
-      <CircleChevronRight className="z-20 duration-400 fill-white dark:fill-slate-900 group-hover:translate-x-64 group-hover:rotate-180 fixed top-[50%] left-1 transform -translate-y-1/2 w-10 h-10" />
-      <aside className="relative z-10 transform bg-white dark:bg-slate-900 dark:text-slate-100 -translate-x-full group-hover:translate-x-0 duration-400 w-64 h-screen rounded-r-lg shadow-lg items-center flex justify-between flex-col py-8">
+      <CircleChevronRight
+        onClick={() => setIsOpen(!isOpen)}
+        className={clsx(
+          "z-20 duration-400 fill-white dark:fill-slate-900 group-hover:translate-x-64 group-hover:rotate-180 fixed top-[50%] left-1 transform -translate-y-1/2 w-10 h-10",
+          {
+            "translate-x-64 rotate-180": isOpen,
+          },
+        )}
+      />
+      <aside
+        className={clsx(
+          "relative z-10 transform bg-white dark:bg-slate-900 dark:text-slate-100 -translate-x-full group-hover:translate-x-0 duration-400 w-64 h-screen rounded-r-lg shadow-lg items-center flex justify-between flex-col py-8",
+          {
+            "translate-x-0": isOpen,
+          },
+        )}
+      >
+        <X
+          onClick={() => setIsOpen(false)}
+          className="absolute top-3 right-2 text-slate-600 dark:text-slate-300 cursor-pointer"
+        />
+
         <section className="flex flex-col gap-5 w-full">
-          <h1 className="text-3xl font-bold text-center">KIN</h1>
+          <h1 className="text-3xl font-bold text-center tracking-wider select-none">
+            KIN
+          </h1>
           <Link
             href="/profile"
             className={clsx("element-of-sidebar", {
