@@ -59,7 +59,7 @@ export default function Sidebar() {
       >
         <X
           onClick={() => setIsOpen(false)}
-          className="absolute top-3 right-2 text-slate-600 dark:text-slate-300 cursor-pointer"
+          className="absolute top-3 right-2 text-slate-600 dark:text-slate-300 cursor-pointer sm:invisible"
         />
 
         <section className="flex flex-col gap-5 w-full">
