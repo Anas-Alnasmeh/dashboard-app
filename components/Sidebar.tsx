@@ -43,7 +43,7 @@ export default function Sidebar() {
       <CircleChevronRight
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          "z-20 duration-400 fill-white dark:fill-slate-900 group-hover:translate-x-64 group-hover:rotate-180 fixed top-[50dvh] left-1 transform -translate-y-1/2 w-10 h-10",
+          "z-20 duration-400 fill-white dark:fill-slate-900 group-hover:translate-x-64 group-hover:rotate-180 fixed top-[50dvh] left-1 transform -translate-y-1/2 w-10 h-10 sm:pointer-events-none",
           {
             "translate-x-64 rotate-180": isOpen,
           },
